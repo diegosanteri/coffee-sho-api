@@ -1,0 +1,21 @@
+version: '3'
+services:
+    coffee_shop_api:
+      build:
+        context: ./
+        dockerfile: ./Dockerfile
+      image: coffee-shop-api
+      environment:
+        NODE_ENV: prod
+      ports:
+        - '3000:3000'
+        - '3001:3001'
+    mongo:
+      image: mongo
+      ports:
+        - "27017:27017"
+    redis:
+      image: redis
+      command: redis-server
+      ports:
+        - '6379:6379'   

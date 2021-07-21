@@ -1,0 +1,23 @@
+
+<html>
+  <head>
+    <script>
+      const socket = new WebSocket('ws://localhost:3001');
+      socket.onopen = function() {
+        console.log('Connected');
+        socket.send(
+          JSON.stringify({
+            event: 'events',
+            data: 'test',
+          }),
+        );
+        socket.onmessage = function(response) {
+          const dataJson = JSON.parse(response.data);
+          alert("Order " + dataJson.code + " is ready");
+        };
+      };
+    </script>
+  </head>
+
+  <body></body>
+</html>
